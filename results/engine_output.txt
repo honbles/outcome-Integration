@@ -1,0 +1,23 @@
+E1  |U| probes: 116160 | distinct response vectors over H8: 26 | observational classes: 8 (irredundant: True )
+E1  minimum distinguishing suite size for k=8: 3 (lower bound ceil(log2 k)=3, upper bound k-1=7)
+      probe [([0, 0],deny,p0), ([0, 0],permit,p1)] default=deny flow=0 -> {'FM': 'deny', 'LM': 'permit', 'PRhi': 'permit', 'PRlo': 'deny', 'BM': 'deny', 'PO': 'permit', 'DO': 'deny', 'LMQ': 'permit'}
+      probe [([0, 0],permit,p1), ([0, 0],deny,p0)] default=deny flow=0 -> {'FM': 'permit', 'LM': 'deny', 'PRhi': 'permit', 'PRlo': 'deny', 'BM': 'permit', 'PO': 'permit', 'DO': 'deny', 'LMQ': 'deny'}
+      probe [([0, 1],deny,p1,q), ([0, 0],permit,p0)] default=deny flow=0 -> {'FM': 'deny', 'LM': 'permit', 'PRhi': 'deny', 'PRlo': 'permit', 'BM': 'permit', 'PO': 'permit', 'DO': 'deny', 'LMQ': 'deny'}
+E1  Algorithm 1 (greedy) suite size on H8: 6 (bound k-1 = 7)
+
+E2  identification on simulated engines (class H8, probe universe restricted to what each engine can express)
+  iptables (flat chain, ACCEPT/DROP)     |U|=  3360  observational classes=5  true semantics FM  its class=['FM', 'PRhi', 'PRlo']  greedy suite separating the classes: 3 probes
+  pf (pass/block, quick)                 |U|= 13120  observational classes=6  true semantics LMQ  its class=['LMQ']  greedy suite separating the classes: 4 probes
+  AWS NACL (rule numbers)                |U|= 19680  observational classes=7  true semantics PRlo  its class=['PRlo']  greedy suite separating the classes: 4 probes
+  Azure NSG (priorities)                 |U|= 19680  observational classes=7  true semantics PRlo  its class=['PRlo']  greedy suite separating the classes: 4 probes
+  AWS security group (allow-only)        |U|=   880  observational classes=1  true semantics PO  its class=['FM', 'LM', 'PRhi', 'PRlo', 'BM', 'PO', 'DO', 'LMQ']  greedy suite separating the classes: 0 probes
+
+E3  class without 'quick' vs with 'quick', target = pf model (LMQ)
+  H4 suite (no quick probes) against pf: consistent set = ['LM']
+  assumed LM   plan: insert permit [0, 2] at position 1, quick=0 -> predicted Q1 true; actual pf Q1 = False
+  assumed FM   plan: insert permit [0, 2] at position 0, quick=0 -> predicted Q1 true; actual pf Q1 = False
+  assumed LMQ  plan: insert permit [0, 2] at position 0, quick=1 -> predicted Q1 true; actual pf Q1 = True
+
+E4  out-of-class engine: priority order with ties to the LATER rule (not in H8)
+  greedy H8 suite: consistent set = [] (empty = deviation detected)
+  uniform deviation distance to each member over the 2-rule pool: min eps = 0.0430 (member LM)

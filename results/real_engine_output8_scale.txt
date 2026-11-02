@@ -1,0 +1,17 @@
+kernel: 6.18.44-fc-v153 | nft: nftables v1.0.9 (Old Doc Yak #3) | python 3.13.16
+controls: permit-all 66/66 arrive, deny-all 0/66 arrive
+
+ n  |M|     cells  Q1 cell probes  enum probes(Q1+Q2)  t_enum  t_cells  verdict Q1 (cells/enum)  Q2 (model/measured)  engine==first-match
+ 5  28790     11        7               131072     10.9     0.20   True /True           True /True        True
+ 5  23203     12        3               131072     10.8     0.20   True /True           True /True        True
+10  14873     21        4               131072     10.8     0.20   True /True           True /True        True
+10  20939     22       10               131072     10.9     0.20   True /True           True /True        True
+20  21790     43       14               131072     10.9     0.20   True /True           True /True        True
+20  29702     41        9               131072     10.9     0.20   True /True           True /True        True
+40  28498     80       39               131072     10.9     0.20   True /True           True /True        True
+40  15084     79       19               131072     10.9     0.20   True /True           True /True        True
+
+verdicts agree on 8/8 plans for Q1, 8/8 for Q2; engine equals first-match on all flows for 8/8 plans
+
+hidden drop of one address (10.98.78.37) inside a cell of M, second table: cell check says Q1 holds (1 probes); enumeration says Q1 fails (65536 probes)
+DONE

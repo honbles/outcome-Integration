@@ -1,0 +1,73 @@
+kernel: 6.18.44-fc-v140
+tool: iptables v1.8.10 (legacy)
+tool: iptables v1.8.10 (nf_tables)
+tool: nftables v1.0.9 (Old Doc Yak #3)
+python: 3.12.3
+probe universe U_e: 3360 (policy,flow) probes, 840 distinct policies (1-2 rules, both defaults, N=4 flows)
+observational classes of H8 on U_e (hypotheses a probe in U_e cannot separate): [['FM', 'PRhi', 'PRlo'], ['LM', 'LMQ'], ['BM'], ['PO'], ['DO']]
+greedy suite over class representatives: 3 probes
+   probe [([0, 0],deny), ([0, 0],permit)] default=deny flow=0
+   probe [([0, 0],permit), ([0, 0],deny)] default=deny flow=0
+   probe [([0, 1],deny), ([0, 0],permit)] default=deny flow=0
+
+==================== engine: iptables-legacy ====================
+controls  permit-all -> (1, 1, 1, 1) (want 1111)   deny-all -> (0, 0, 0, 0) (want 0000)   deny flow0 only -> (0, 1, 1, 1) (want 0111)
+sweep: 840 policies installed, 3360 probe responses, 31.4s
+determinism: re-probed 210 policies in shuffled order, 0 response mismatches
+disagreement d_h with the real engine over U_e: FM=0.0000  LM=0.1238  PRhi=0.0000  PRlo=0.0000  BM=0.0452  PO=0.0619  DO=0.0619  LMQ=0.1238
+consistent with the 3-probe suite: ['FM', 'PRhi', 'PRlo']
+consistent with all 3360 probes     : ['FM', 'PRhi', 'PRlo']
+VERDICT: in class; identified up to observational class ['FM', 'PRhi', 'PRlo'] (expected class structure matches)
+
+==================== engine: iptables-nft ====================
+controls  permit-all -> (1, 1, 1, 1) (want 1111)   deny-all -> (0, 0, 0, 0) (want 0000)   deny flow0 only -> (0, 1, 1, 1) (want 0111)
+sweep: 840 policies installed, 3360 probe responses, 36.5s
+determinism: re-probed 210 policies in shuffled order, 0 response mismatches
+disagreement d_h with the real engine over U_e: FM=0.0000  LM=0.1238  PRhi=0.0000  PRlo=0.0000  BM=0.0452  PO=0.0619  DO=0.0619  LMQ=0.1238
+consistent with the 3-probe suite: ['FM', 'PRhi', 'PRlo']
+consistent with all 3360 probes     : ['FM', 'PRhi', 'PRlo']
+VERDICT: in class; identified up to observational class ['FM', 'PRhi', 'PRlo'] (expected class structure matches)
+
+==================== engine: nft-1chain ====================
+controls  permit-all -> (1, 1, 1, 1) (want 1111)   deny-all -> (0, 0, 0, 0) (want 0000)   deny flow0 only -> (0, 1, 1, 1) (want 0111)
+sweep: 840 policies installed, 3360 probe responses, 37.4s
+determinism: re-probed 210 policies in shuffled order, 0 response mismatches
+disagreement d_h with the real engine over U_e: FM=0.0000  LM=0.1238  PRhi=0.0000  PRlo=0.0000  BM=0.0452  PO=0.0619  DO=0.0619  LMQ=0.1238
+consistent with the 3-probe suite: ['FM', 'PRhi', 'PRlo']
+consistent with all 3360 probes     : ['FM', 'PRhi', 'PRlo']
+VERDICT: in class; identified up to observational class ['FM', 'PRhi', 'PRlo'] (expected class structure matches)
+
+==================== engine: nft-2chain ====================
+controls  permit-all -> (1, 1, 1, 1) (want 1111)   deny-all -> (0, 0, 0, 0) (want 0000)   deny flow0 only -> (0, 1, 1, 1) (want 0111)
+sweep: 840 policies installed, 3360 probe responses, 40.2s
+determinism: re-probed 210 policies in shuffled order, 0 response mismatches
+disagreement d_h with the real engine over U_e: FM=0.1821  LM=0.1821  PRhi=0.1821  PRlo=0.1821  BM=0.1821  PO=0.2440  DO=0.1202  LMQ=0.1821
+consistent with the 3-probe suite: ['DO']
+consistent with all 3360 probes     : []
+VERDICT: suite alone would ACCEPT ['DO'] but exhaustive probing REFUTES every member: undetected-by-suite deviation, min eps=0.1202 (nearest ['DO'])
+
+==================== differential: implementation vs implementation ====================
+iptables-legacy vs iptables-nft: 0 of 3360 probes differ
+iptables-legacy vs nft-1chain  : 0 of 3360 probes differ
+iptables-legacy vs nft-2chain  : 612 of 3360 probes differ
+
+==================== plan under an assumed semantics, checked on the real engine ====================
+production policy [([1, 1],deny)] default=permit; request: permit flows [0, 2]
+plan chosen assuming FM: insert permit [0, 2] at position 0 -> [([0, 2],permit), ([1, 1],deny)] default=permit; model predicts Q1 = True
+  real iptables-legacy  Q1 holds: True  decisions for flows 0..3 = (1, 1, 1, 1)
+  real iptables-nft     Q1 holds: True  decisions for flows 0..3 = (1, 1, 1, 1)
+  real nft-1chain       Q1 holds: True  decisions for flows 0..3 = (1, 1, 1, 1)
+  real nft-2chain       Q1 holds: False decisions for flows 0..3 = (1, 0, 1, 1)
+
+total oracle installs: 4216, wall time 185.5s
+
+==================== detection by random probing vs Theorem (real nft-2chain) ====================
+eps = min_h d_h = 0.1202; theory: n >= ln(k/delta)/eps suffices; (1-eps)ln(1/delta)/eps is necessary
+  delta=0.10: sufficient n = 37, necessary n = 17
+  delta=0.01: sufficient n = 56, necessary n = 34
+  n= 1  empirical miss=0.8798   theorem lower=0.8798 upper=1.0000   (MC s.e. <= 0.0035)
+  n= 2  empirical miss=0.7732   theorem lower=0.7740 upper=1.0000   (MC s.e. <= 0.0035)
+  n= 3  empirical miss=0.6790   theorem lower=0.6809 upper=1.0000   (MC s.e. <= 0.0035)
+  n= 5  empirical miss=0.5244   theorem lower=0.5270 upper=1.0000   (MC s.e. <= 0.0035)
+  n= 8  empirical miss=0.3607   theorem lower=0.3589 upper=1.0000   (MC s.e. <= 0.0035)
+  n=12  empirical miss=0.2120   theorem lower=0.2150 upper=0.7872   (MC s.e. <= 0.0035)

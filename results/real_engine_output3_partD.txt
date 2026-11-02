@@ -1,0 +1,48 @@
+
+################ Part D: nginx ################
+tool: nginx version: nginx/1.24.0 (Ubuntu)
+python: 3.12.3
+nginx -t on a config with two identical prefix locations: rc=1  (erg] 3800#3800: duplicate location "/0" in /tmp/ngx/t.conf:7)
+
+######## D1: prefix locations only ########
+probe universe U_e: 1456 (policy,flow) probes, 364 distinct policies
+observational classes of H8 on U_e: [['FM', 'PRhi', 'PRlo'], ['LM', 'LMQ'], ['BM'], ['PO'], ['DO']]
+greedy suite over class representatives: 3 probes
+   probe [([0, 0],deny), ([0, 1],permit)] default=deny flow=0
+   probe [([0, 0],permit), ([0, 1],deny)] default=deny flow=0
+   probe [([0, 1],deny), ([0, 0],permit)] default=deny flow=0
+
+==================== engine: nginx-prefix ====================
+controls: permit-all (1, 1, 1, 1)  deny-all (0, 0, 0, 0)  deny flow0 only (0, 1, 1, 1) (all as wanted)
+sweep: 364 policies installed, 1456 probe responses, 38.7s
+determinism: re-probed 91 policies in shuffled order, 0 response mismatches
+disagreement d_h with nginx-prefix over U_e: FM=0.0330  LM=0.0330  PRhi=0.0330  PRlo=0.0330  BM=0.0000  PO=0.0330  DO=0.0330  LMQ=0.0330
+consistent with the 3-probe suite: ['BM']
+consistent with all 1456 probes     : ['BM']
+VERDICT: in class; identified up to observational class ['BM'] (class structure matches)
+
+######## D2: prefix + exact locations ########
+probe universe U_e: 3696 (policy,flow) probes, 924 distinct policies
+observational classes of H8 on U_e: [['FM', 'PRhi', 'PRlo'], ['LM'], ['BM'], ['PO'], ['DO'], ['LMQ']]
+greedy suite over class representatives: 4 probes
+   probe [([0, 0],deny), ([0, 1],permit)] default=deny flow=0
+   probe [([0, 0],permit), ([0, 1],deny)] default=deny flow=0
+   probe [([0, 1],deny), ([0, 0],permit)] default=deny flow=0
+   probe [([0, 0],deny), ([0, 0],permit)] default=deny flow=0
+
+==================== engine: nginx-exact ====================
+controls: permit-all (1, 1, 1, 1)  deny-all (0, 0, 0, 0)  deny flow0 only (0, 1, 1, 1) (all as wanted)
+sweep: 924 policies installed, 3696 probe responses, 98.8s
+determinism: re-probed 231 policies in shuffled order, 0 response mismatches
+disagreement d_h with nginx-exact over U_e: FM=0.0260  LM=0.0260  PRhi=0.0260  PRlo=0.0260  BM=0.0043  PO=0.0260  DO=0.0260  LMQ=0.0130
+consistent with the 4-probe suite: ['BM']
+consistent with all 3696 probes     : []
+VERDICT: suite alone would ACCEPT ['BM'] but exhaustive probing REFUTES every member; min eps=0.0043 (nearest ['BM'])
+
+######## D3: class extended by QBM (exact first, else longest prefix) ########
+classes of H9 on U_e(nginx-exact): [['FM', 'PRhi', 'PRlo'], ['LM'], ['BM'], ['PO'], ['DO'], ['LMQ'], ['QBM']]
+greedy suite: 5 probes
+d_h: FM=0.0260  LM=0.0260  PRhi=0.0260  PRlo=0.0260  BM=0.0043  PO=0.0260  DO=0.0260  LMQ=0.0130  QBM=0.0000
+consistent with all 3696 probes: ['QBM']
+consistent with the 5-probe suite: ['QBM']
+total oracle installs: 1616

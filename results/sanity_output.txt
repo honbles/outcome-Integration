@@ -1,0 +1,13 @@
+distinct response vectors: 16 irredundant: True
+min distinguishing suite size: 2 ; number of minimum suites (over distinct response vectors): 12
+probe [((0, 0), 'deny', 0), ((0, 0), 'permit', 1)] default deny flow 0 -> responses {'FM': 'deny', 'LM': 'permit', 'PR': 'permit', 'BM': 'deny'}
+probe [((0, 1), 'deny', 0), ((0, 0), 'permit', 0)] default deny flow 0 -> responses {'FM': 'deny', 'LM': 'permit', 'PR': 'deny', 'BM': 'permit'}
+cell-compression policies: 3000 | all cells decision-constant (4 semantics): True | max cells/(2n+1)^d: 1.0
+Q2 trials: 8000 | cell-diff == brute-force diff: True | locality lemma held: True
+Q2 held: 6471 | violated: 1529 (with B == M: 0 ; with M strictly inside B: 1529 )
+eps_target 0.02 eps_min 0.0204 n 50 empirical miss 0.3548 lower 3.564e-01 upper 4.217e-01
+eps_target 0.02 eps_min 0.0204 n 100 empirical miss 0.1308 lower 1.270e-01 upper 1.291e-01
+eps_target 0.02 eps_min 0.0204 n 200 empirical miss 0.0168 lower 1.613e-02 upper 1.613e-02
+eps_target 0.05 eps_min 0.0496 n 50 empirical miss 0.0807 lower 7.848e-02 upper 9.402e-02
+eps_target 0.05 eps_min 0.0496 n 100 empirical miss 0.0048 lower 6.159e-03 upper 6.277e-03
+eps_target 0.05 eps_min 0.0496 n 200 empirical miss 0.0001 lower 3.794e-05 upper 3.795e-05

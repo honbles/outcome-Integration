@@ -1,0 +1,71 @@
+kernel: 6.18.44-fc-v140 | python 3.12.3
+PART A: |U_e|=3360 probes, 842 policies (incl. 2 empty); observational classes [['FM', 'PRhi', 'PRlo'], ['LM', 'LMQ'], ['BM'], ['PO'], ['DO']]
+S_id: 3 probes; S_cc: 144 probes (128 interaction types + 16 per-flow probes)
+S_cc separates all observational classes of H8 on U_e: True
+
+==================== engine: iptables-nft ====================
+controls permit-all/deny-all/deny-flow0: (1, 1, 1, 1) (0, 0, 0, 0) (0, 1, 1, 1)
+sweep: 842 policies, 35.5s
+determinism: 80 policies re-probed, 0 mismatches
+d_h: FM=0.0000 LM=0.1238 PRhi=0.0000 PRlo=0.0000 BM=0.0452 PO=0.0619 DO=0.0619 LMQ=0.1238
+consistent after S_id: ['FM', 'PRhi', 'PRlo'] | after S_cc: ['FM', 'PRhi', 'PRlo'] | after all 3360 probes: ['FM', 'PRhi', 'PRlo']
+random probing miss probability: n=144 (size of S_cc) 1.0000 ; n=56 1.0000   (n/a: engine is in class, nothing to detect)
+
+==================== engine: iptables-nft-userchain ====================
+controls permit-all/deny-all/deny-flow0: (1, 1, 1, 1) (0, 0, 0, 0) (0, 1, 1, 1)
+sweep: 842 policies, 35.3s
+determinism: 80 policies re-probed, 0 mismatches
+d_h: FM=0.0000 LM=0.1238 PRhi=0.0000 PRlo=0.0000 BM=0.0452 PO=0.0619 DO=0.0619 LMQ=0.1238
+consistent after S_id: ['FM', 'PRhi', 'PRlo'] | after S_cc: ['FM', 'PRhi', 'PRlo'] | after all 3360 probes: ['FM', 'PRhi', 'PRlo']
+random probing miss probability: n=144 (size of S_cc) 1.0000 ; n=56 1.0000   (n/a: engine is in class, nothing to detect)
+
+==================== engine: nft-2chain ====================
+controls permit-all/deny-all/deny-flow0: (1, 1, 1, 1) (0, 0, 0, 0) (0, 1, 1, 1)
+sweep: 842 policies, 39.0s
+determinism: 80 policies re-probed, 0 mismatches
+d_h: FM=0.1821 LM=0.1821 PRhi=0.1821 PRlo=0.1821 BM=0.1821 PO=0.2440 DO=0.1202 LMQ=0.1821
+consistent after S_id: ['DO'] | after S_cc: [] | after all 3360 probes: []
+random probing miss probability: n=144 (size of S_cc) 0.0000 ; n=56 0.0010
+
+==================== engine: nft-2chain-split2 ====================
+controls permit-all/deny-all/deny-flow0: (1, 1, 1, 1) (0, 0, 0, 0) (0, 1, 1, 1)
+sweep: 842 policies, 37.6s
+determinism: 80 policies re-probed, 0 mismatches
+d_h: FM=0.1821 LM=0.2440 PRhi=0.1821 PRlo=0.1821 BM=0.2048 PO=0.2440 DO=0.1821 LMQ=0.2440
+consistent after S_id: ['DO'] | after S_cc: [] | after all 3360 probes: []
+random probing miss probability: n=144 (size of S_cc) 0.0000 ; n=56 0.0000
+
+==================== engine: bg-drop3 ====================
+controls permit-all/deny-all/deny-flow0: (1, 1, 1, 0) (0, 0, 0, 0) (0, 1, 1, 0)
+sweep: 842 policies, 43.7s
+determinism: 80 policies re-probed, 0 mismatches
+d_h: FM=0.1250 LM=0.2298 PRhi=0.1250 PRlo=0.1250 BM=0.1631 PO=0.1869 DO=0.1679 LMQ=0.2298
+consistent after S_id: ['FM', 'PRhi', 'PRlo'] | after S_cc: [] | after all 3360 probes: []
+random probing miss probability: n=144 (size of S_cc) 0.0000 ; n=56 0.0005
+
+==================== engine: bg-drop01 ====================
+controls permit-all/deny-all/deny-flow0: (0, 0, 1, 1) (0, 0, 0, 0) (0, 0, 1, 1)
+sweep: 842 policies, 43.6s
+determinism: 80 policies re-probed, 0 mismatches
+d_h: FM=0.2500 LM=0.3119 PRhi=0.2500 PRlo=0.2500 BM=0.2726 PO=0.3119 DO=0.2500 LMQ=0.3119
+consistent after S_id: ['DO'] | after S_cc: [] | after all 3360 probes: []
+random probing miss probability: n=144 (size of S_cc) 0.0000 ; n=56 0.0000
+
+==================== engine: bg-accept2 ====================
+controls permit-all/deny-all/deny-flow0: (1, 1, 1, 1) (0, 0, 0, 0) (0, 1, 1, 1)
+sweep: 842 policies, 35.4s
+determinism: 80 policies re-probed, 0 mismatches
+d_h: FM=0.0000 LM=0.1238 PRhi=0.0000 PRlo=0.0000 BM=0.0452 PO=0.0619 DO=0.0619 LMQ=0.1238
+consistent after S_id: ['FM', 'PRhi', 'PRlo'] | after S_cc: ['FM', 'PRhi', 'PRlo'] | after all 3360 probes: ['FM', 'PRhi', 'PRlo']
+random probing miss probability: n=144 (size of S_cc) 1.0000 ; n=56 1.0000   (n/a: engine is in class, nothing to detect)
+
+==================== PART A summary ====================
+engine                   eps     nearest  S_id (3 probes)                S_cc (144 probes)      rand n=144 rand n=56
+iptables-nft             0.0000  -        in class                       in class ['FM', 'PRhi' miss=1.000  miss=1.000
+iptables-nft-userchain   0.0000  -        in class                       in class ['FM', 'PRhi' miss=1.000  miss=1.000
+nft-2chain               0.1202  DO       ACCEPTS ['DO']                 detects                miss=0.000  miss=0.001
+nft-2chain-split2        0.1821  FM       ACCEPTS ['DO']                 detects                miss=0.000  miss=0.000
+bg-drop3                 0.1250  FM       ACCEPTS ['FM', 'PRhi', 'PRlo'] detects                miss=0.000  miss=0.001
+bg-drop01                0.2500  FM       ACCEPTS ['DO']                 detects                miss=0.000  miss=0.000
+bg-accept2               0.0000  -        in class                       in class ['FM', 'PRhi' miss=1.000  miss=1.000
+PART A oracle installs: 6475, wall time 304.9s

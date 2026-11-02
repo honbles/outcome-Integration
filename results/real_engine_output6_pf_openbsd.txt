@@ -1,0 +1,34 @@
+# host details (uname -a, sysctl kern.version, syspatch -l)
+OpenBSD LAB.localdomain 8.0 GENERIC#82 amd64
+kern.version=OpenBSD 8.0 (GENERIC) #82: Tue Oct  6 22:58:03 MDT 2026
+    deraadt@amd64.openbsd.org:/usr/src/sys/arch/amd64/compile/GENERIC
+syspatch -l: (no patches installed)
+
+# output of: python3 real_engine_experiment6_pf.py
+system: OpenBSD LAB.localdomain 8.0 | python 3.14.9 | mode: real pf
+pf status: Status: Enabled for 0 days 00:19:18              Debug: err
+ruleset optimizer: disabled with -o none
+lo0 in pf: all carp egress enc enc0 lo lo0 pflog pflog0 vic0
+pool: 13120 probes, 3280 policies (1-2 rules, quick flag, both defaults, N=4 flows)
+controls  permit-all (1, 1, 1, 1) (want 1111)  deny-all (0, 0, 0, 0) (want 0000)  deny flow0 (0, 1, 1, 1) (want 0111)
+          quick deny flow0 then permit 0-3 (0, 1, 1, 1) (want 0111)  plain deny flow1 then permit 0-3 (last match) (1, 1, 1, 1) (want 1111)
+observational classes of H8 on the pool: [['FM', 'PRhi', 'PRlo'], ['LM'], ['BM'], ['PO'], ['DO'], ['LMQ']]
+greedy identification suite: 4 probes
+   probe [([0, 0],deny), ([0, 0],permit)] default=deny flow=0
+   probe [([0, 0],deny,quick), ([0, 0],permit)] default=deny flow=0
+   probe [([0, 0],permit), ([0, 0],deny)] default=deny flow=0
+   probe [([0, 1],deny), ([0, 0],permit)] default=deny flow=0
+sweep: 3280 policies installed, 13120 probe responses, 88.5s
+determinism: re-probed 820 policies in shuffled order, 0 response mismatches
+disagreement d_h with the real engine: FM=0.0634  LM=0.0634  PRhi=0.0634  PRlo=0.0634  BM=0.0634  PO=0.0634  DO=0.0634  LMQ=0.0000
+consistent with the 4-probe suite: ['LMQ']
+consistent with all 13120 probes: ['LMQ']
+VERDICT: in class; identified up to observational class ['LMQ']
+
+==================== plan under an assumed semantics, checked on the real engine ====================
+class H4 (no quick), 2-probe suite -> consistent set ['LM'] (expected [LM])
+  plan FM (insert at 0)           Q1 holds on real pf: False decisions for flows 0..3 = (1, 0, 1, 1)
+  plan LM (insert at end)         Q1 holds on real pf: False decisions for flows 0..3 = (1, 0, 1, 1)
+  plan LMQ (quick permit at 0)    Q1 holds on real pf: True  decisions for flows 0..3 = (1, 1, 1, 1)
+
+total installs 4114, wall time 111s

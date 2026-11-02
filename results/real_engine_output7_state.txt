@@ -1,0 +1,45 @@
+kernel: 6.18.44-fc-v153 | nft: nftables v1.0.9 (Old Doc Yak #3) | python 3.13.16
+pool: 840 policies (1-2 rules, both defaults), 3360 probes; identification suite 3 probes
+
+==================== mode: plain ====================
+controls  permit-all (1, 1, 1, 1)  deny-all (0, 0, 0, 0)  deny flow0 (0, 1, 1, 1) (want 1111 0000 0111): pass
+sweep: 840 policies, 3360 probes, 60.4s
+disagreement with H8: FM=0.0000  LM=0.1238  PRhi=0.0000  PRlo=0.0000  BM=0.0452  PO=0.0619  DO=0.0619  LMQ=0.1238
+eps = 0.0000;  vs first-match: engine permits where the policy denies 0, denies where the policy permits 0, of 3360 probes
+consistent with the 3-probe suite: ['FM', 'PRhi', 'PRlo'];  with all probes: ['FM', 'PRhi', 'PRlo']
+VERDICT: in class
+guard: re-probed 40 policies in a new order: 0 mismatching responses of 160
+
+==================== mode: fresh ====================
+controls  permit-all (1, 1, 1, 1)  deny-all (0, 0, 0, 0)  deny flow0 (0, 1, 1, 1) (want 1111 0000 0111): pass
+sweep: 840 policies, 3360 probes, 60.5s
+disagreement with H8: FM=0.0000  LM=0.1238  PRhi=0.0000  PRlo=0.0000  BM=0.0452  PO=0.0619  DO=0.0619  LMQ=0.1238
+eps = 0.0000;  vs first-match: engine permits where the policy denies 0, denies where the policy permits 0, of 3360 probes
+consistent with the 3-probe suite: ['FM', 'PRhi', 'PRlo'];  with all probes: ['FM', 'PRhi', 'PRlo']
+VERDICT: in class
+guard: re-probed 40 policies in a new order: 0 mismatching responses of 160
+
+==================== mode: stale ====================
+controls  permit-all (1, 1, 1, 1)  deny-all (1, 1, 1, 1)  deny flow0 (1, 1, 1, 1) (want 1111 0000 0111): FAIL
+sweep: 840 policies, 3360 probes, 23.5s
+disagreement with H8: FM=0.5000  LM=0.5000  PRhi=0.5000  PRlo=0.5000  BM=0.5000  PO=0.4381  DO=0.5619  LMQ=0.5000
+eps = 0.4381;  vs first-match: engine permits where the policy denies 1680, denies where the policy permits 0, of 3360 probes
+consistent with the 3-probe suite: ['PO'];  with all probes: []
+VERDICT: outside H8 (no member agrees on all probes)
+guard: re-probed 40 policies in a new order: 0 mismatching responses of 160
+
+SUMMARY eps: plain=0.0000 fresh=0.0000 stale=0.4381
+
+---- plan check, mode: fresh ----
+history: permit-all probed first; then P0 = [deny flow 1], default deny; request: permit flows 0..2
+  P0 decisions         : (0, 0, 0, 0) (first-match model: (0,0,0,0))
+  plan FM  (permit [0,2] at top)   engine (1, 1, 1, 0)  first-match model (1, 1, 1, 0)  Q1 check says holds; Q2 (flow 3 unchanged, deny) holds
+  plan LM  (permit [0,2] at end)   engine (1, 0, 1, 0)  first-match model (1, 0, 1, 0)  Q1 check says fails; Q2 (flow 3 unchanged, deny) holds
+
+---- plan check, mode: stale ----
+history: permit-all probed first; then P0 = [deny flow 1], default deny; request: permit flows 0..2
+  P0 decisions         : (1, 1, 1, 1) (first-match model: (0,0,0,0))
+  plan FM  (permit [0,2] at top)   engine (1, 1, 1, 1)  first-match model (1, 1, 1, 0)  Q1 check says holds; Q2 (flow 3 unchanged, deny) fails
+  plan LM  (permit [0,2] at end)   engine (1, 1, 1, 1)  first-match model (1, 0, 1, 0)  Q1 check says holds; Q2 (flow 3 unchanged, deny) fails
+
+DONE 154s

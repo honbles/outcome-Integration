@@ -1,0 +1,49 @@
+kernel: 6.18.44-fc-v140  python: 3.12.3
+
+################ routing ################
+pool 1680 probes; S_id 3 probes; S_cc 112 probes (96 interaction types + 16 per-flow)
+
+--- ip-route vs class H8: eps = 0.0000, consistent with all 1680 probes: ['BM']
+  S_id   (  3 probes): consistent hypotheses ['BM']                 -> accepted
+  S_cc   (112 probes): consistent hypotheses ['BM']                 -> accepted
+
+--- ip-rule vs class H8: eps = 0.0000, consistent with all 1680 probes: ['FM', 'PRhi', 'PRlo']
+  S_id   (  3 probes): consistent hypotheses ['FM', 'PRhi', 'PRlo'] -> accepted
+  S_cc   (112 probes): consistent hypotheses ['FM', 'PRhi', 'PRlo'] -> accepted
+
+--- ip-route-revtie vs class H8: eps = 0.0286, consistent with all 1680 probes: []
+  S_id   (  3 probes): consistent hypotheses ['LM', 'LMQ']          -> accepted
+  S_cc   (112 probes): consistent hypotheses []                     -> DETECTED
+  random probing: sufficient n for delta=.05: 178, necessary 102
+    n=   8  empirical miss=0.9780  (MC s.e. <= 0.0079)
+    n=  24  empirical miss=0.8245  (MC s.e. <= 0.0079)
+    n=  56  empirical miss=0.4022  (MC s.e. <= 0.0079)
+    n= 200  empirical miss=0.0050  (MC s.e. <= 0.0079)
+    n= 600  empirical miss=0.0000  (MC s.e. <= 0.0079)
+    n=1500  empirical miss=0.0000  (MC s.e. <= 0.0079)
+
+################ nginx ################
+nginx-prefix pool 1456 probes; S_id 3; S_cc 96
+
+--- nginx-prefix vs class H8: eps = 0.0000, consistent with all 1456 probes: ['BM']
+  S_id   (  3 probes): consistent hypotheses ['BM']                 -> accepted
+  S_cc   ( 96 probes): consistent hypotheses ['BM']                 -> accepted
+
+nginx-exact pool 3696 probes; S_id 4; S_cc 112 (96 types); S_ccq 256 (240 types)
+
+--- nginx-exact vs class H8: eps = 0.0043, consistent with all 3696 probes: []
+  S_id   (  4 probes): consistent hypotheses ['BM']                 -> accepted
+  S_cc   (112 probes): consistent hypotheses []                     -> DETECTED
+  S_ccq  (256 probes): consistent hypotheses []                     -> DETECTED
+  random probing: sufficient n for delta=.05: 1173, necessary 690
+    n=   8  empirical miss=0.9988  (MC s.e. <= 0.0079)
+    n=  24  empirical miss=0.9840  (MC s.e. <= 0.0079)
+    n=  56  empirical miss=0.9015  (MC s.e. <= 0.0079)
+    n= 200  empirical miss=0.4710  (MC s.e. <= 0.0079)
+    n= 600  empirical miss=0.0725  (MC s.e. <= 0.0079)
+    n=1500  empirical miss=0.0018  (MC s.e. <= 0.0079)
+
+--- nginx-exact vs class H9 = H8+QBM: eps = 0.0000, consistent with all 3696 probes: ['QBM']
+  S_id9  (  5 probes): consistent hypotheses ['QBM']                -> accepted
+  S_cc   (112 probes): consistent hypotheses ['QBM']                -> accepted
+  S_ccq  (256 probes): consistent hypotheses ['QBM']                -> accepted

@@ -1,0 +1,9 @@
+FM    checked 15580800 (policy, rule, position, subset) cases
+LM    checked 15580800 (policy, rule, position, subset) cases
+PRhi  checked 15580800 (policy, rule, position, subset) cases
+PRlo  checked 15580800 (policy, rule, position, subset) cases
+BM    checked 15580800 (policy, rule, position, subset) cases
+PO    checked 15580800 (policy, rule, position, subset) cases
+DO    checked 15580800 (policy, rule, position, subset) cases
+LMQ   checked 15580800 (policy, rule, position, subset) cases
+total checked 124646400, violations 0

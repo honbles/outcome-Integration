@@ -1,0 +1,40 @@
+kernel: 6.18.44-fc-v140 | python 3.12.3
+PART B: grid 5x3=15 flows; 500 policies of 3-5 rules; 200 Q2 trials per variant
+
+==================== engine: iptables-legacy ====================
+controls: permit-all all permitted, deny-all all denied
+sweep: 500 policies x 15 flows = 7500 probes, 21.4s
+determinism: 60 policies re-probed, 0 mismatches
+B1 d_h over 7500 probes: FM=0.0000 LM=0.0971 BM=0.0433 PO=0.0555 DO=0.0531
+B2 cell lemma on the real engine: decision-constant on every cell for 500/500 policies; mean cells 12.0 of 15 flows; cell bound (2n+1)^d held: True
+B3 exact n=200  Delta not within M: real 0, first-match model 0 | real Delta == model Delta in 200 | Q1 real holds 138, model 138, agree 200
+B3 loose n=200  Delta not within M: real 85, first-match model 85 | real Delta == model Delta in 200 | Q1 real holds 147, model 147, agree 200
+
+==================== engine: iptables-nft ====================
+controls: permit-all all permitted, deny-all all denied
+sweep: 500 policies x 15 flows = 7500 probes, 24.7s
+determinism: 60 policies re-probed, 0 mismatches
+B1 d_h over 7500 probes: FM=0.0000 LM=0.0971 BM=0.0433 PO=0.0555 DO=0.0531
+B2 cell lemma on the real engine: decision-constant on every cell for 500/500 policies; mean cells 12.0 of 15 flows; cell bound (2n+1)^d held: True
+B3 exact n=200  Delta not within M: real 0, first-match model 0 | real Delta == model Delta in 200 | Q1 real holds 138, model 138, agree 200
+B3 loose n=200  Delta not within M: real 85, first-match model 85 | real Delta == model Delta in 200 | Q1 real holds 147, model 147, agree 200
+
+==================== engine: nft-1chain ====================
+controls: permit-all all permitted, deny-all all denied
+sweep: 500 policies x 15 flows = 7500 probes, 24.8s
+determinism: 60 policies re-probed, 0 mismatches
+B1 d_h over 7500 probes: FM=0.0000 LM=0.0971 BM=0.0433 PO=0.0555 DO=0.0531
+B2 cell lemma on the real engine: decision-constant on every cell for 500/500 policies; mean cells 12.0 of 15 flows; cell bound (2n+1)^d held: True
+B3 exact n=200  Delta not within M: real 0, first-match model 0 | real Delta == model Delta in 200 | Q1 real holds 138, model 138, agree 200
+B3 loose n=200  Delta not within M: real 85, first-match model 85 | real Delta == model Delta in 200 | Q1 real holds 147, model 147, agree 200
+
+==================== engine: nft-2chain ====================
+controls: permit-all all permitted, deny-all all denied
+sweep: 500 policies x 15 flows = 7500 probes, 25.3s
+determinism: 60 policies re-probed, 0 mismatches
+B1 d_h over 7500 probes: FM=0.1569 LM=0.1823 BM=0.1651 PO=0.2124 DO=0.1295
+B2 cell lemma on the real engine: decision-constant on every cell for 500/500 policies; mean cells 12.0 of 15 flows; cell bound (2n+1)^d held: True
+B3 exact n=200  Delta not within M: real 5, first-match model 0 | real Delta == model Delta in 112 | Q1 real holds 67, model 138, agree 129
+B3 loose n=200  Delta not within M: real 31, first-match model 85 | real Delta == model Delta in 93 | Q1 real holds 72, model 147, agree 125
+
+PART B oracle installs: 5448, wall time 254.7s

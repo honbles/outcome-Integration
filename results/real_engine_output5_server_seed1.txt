@@ -1,0 +1,181 @@
+kernel: 6.17.0-1013-gcp | nft: nftables v1.1.5 (Commodore Bullmoose #6)
+suites: S_id 3 probes, S_cc 144 probes (128 interaction types), S_3 144 probes (128 patterns)
+engines (generator seed 1):
+    d0 T0u
+    d1 T0
+    g00 T2 m=2 f=2
+    g01 T1 k=2
+    g02 T3 f=3
+    g03 T3 f=1
+    g04 T1 k=2
+    g05 T1 k=2
+    g06 T3 f=0
+    g07 T3 f=2
+    g08 T2 m=2 f=2
+    g09 T1 k=1
+    g10 T1 k=1
+    g11 T3 f=1
+    g12 T3 f=0
+    g13 T2 m=3 f=3
+    g14 T2 m=3 f=1
+    g15 T2 m=3 f=2
+    g16 T1 k=2
+    g17 T1 k=1
+    g18 T2 m=2 f=2
+    g19 T3 f=1
+    g20 T2 m=3 f=3
+    g21 T3 f=0
+    g22 T3 f=1
+    g23 T3 f=3
+    g24 T2 m=3 f=2
+    g25 T1 k=2
+    g26 T1 k=1
+    g27 T3 f=2
+    g28 T3 f=0
+    g29 T3 f=0
+    g30 T2 m=3 f=1
+    g31 T2 m=2 f=0
+    g32 T2 m=2 f=3
+    g33 T2 m=3 f=3
+    g34 T2 m=2 f=3
+    g35 T2 m=2 f=3
+    g36 T1 k=2
+    g37 T2 m=2 f=3
+    g38 T3 f=2
+    g39 T3 f=2
+    x4 T2 m=4 f=1
+   [d0] suites installed in 9s
+   [d0] eval sample installed, 72s total
+d0  T0u              eps=0.0000 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:accept  random miss n=56/200/1200: 1.000/1.000/1.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.000
+   [d1] suites installed in 9s
+   [d1] eval sample installed, 169s total
+d1  T0               eps=0.0000 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:accept  random miss n=56/200/1200: 1.000/1.000/1.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.000
+   [g00] suites installed in 10s
+   [g00] eval sample installed, 278s total
+g00 T2               eps=0.0831 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:accept  random miss n=56/200/1200: 0.009/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.140
+   [g01] suites installed in 9s
+   [g01] eval sample installed, 382s total
+g01 T1               eps=0.0678 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:detect  random miss n=56/200/1200: 0.037/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.276
+   [g02] suites installed in 10s
+   [g02] eval sample installed, 494s total
+g02 T3               eps=0.1250 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.138
+   [g03] suites installed in 10s
+   [g03] eval sample installed, 606s total
+g03 T3               eps=0.1232 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.134
+   [g04] suites installed in 9s
+   [g04] eval sample installed, 710s total
+g04 T1               eps=0.0678 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:detect  random miss n=56/200/1200: 0.037/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.276
+   [g05] suites installed in 9s
+   [g05] eval sample installed, 812s total
+g05 T1               eps=0.0678 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:detect  random miss n=56/200/1200: 0.037/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.276
+   [g06] suites installed in 10s
+   [g06] eval sample installed, 924s total
+g06 T3               eps=0.1233 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.129
+   [g07] suites installed in 10s
+   [g07] eval sample installed, 1037s total
+g07 T3               eps=0.1247 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.000/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.140
+   [g08] suites installed in 10s
+   [g08] eval sample installed, 1149s total
+g08 T2               eps=0.0831 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:accept  random miss n=56/200/1200: 0.009/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.140
+   [g09] suites installed in 9s
+   [g09] eval sample installed, 1255s total
+g09 T1               eps=0.0862 nearest=DO            S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.007/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.274
+   [g10] suites installed in 9s
+   [g10] eval sample installed, 1359s total
+g10 T1               eps=0.0862 nearest=DO            S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.007/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.274
+   [g11] suites installed in 10s
+   [g11] eval sample installed, 1470s total
+g11 T3               eps=0.1232 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.134
+   [g12] suites installed in 10s
+   [g12] eval sample installed, 1581s total
+g12 T3               eps=0.1233 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.129
+   [g13] suites installed in 9s
+   [g13] eval sample installed, 1684s total
+g13 T2               eps=0.0426 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:accept  random miss n=56/200/1200: 0.088/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.138
+   [g14] suites installed in 9s
+   [g14] eval sample installed, 1788s total
+g14 T2               eps=0.0406 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:detect  random miss n=56/200/1200: 0.105/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.134
+   [g15] suites installed in 9s
+   [g15] eval sample installed, 1892s total
+g15 T2               eps=0.0422 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:accept  random miss n=56/200/1200: 0.098/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.140
+   [g16] suites installed in 9s
+   [g16] eval sample installed, 1994s total
+g16 T1               eps=0.0678 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:detect  random miss n=56/200/1200: 0.037/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.276
+   [g17] suites installed in 9s
+   [g17] eval sample installed, 2096s total
+g17 T1               eps=0.0862 nearest=DO            S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.007/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.274
+   [g18] suites installed in 10s
+   [g18] eval sample installed, 2204s total
+g18 T2               eps=0.0831 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:accept  random miss n=56/200/1200: 0.009/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.140
+   [g19] suites installed in 10s
+   [g19] eval sample installed, 2314s total
+g19 T3               eps=0.1232 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.134
+   [g20] suites installed in 9s
+   [g20] eval sample installed, 2418s total
+g20 T2               eps=0.0426 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:accept  random miss n=56/200/1200: 0.088/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.138
+   [g21] suites installed in 10s
+   [g21] eval sample installed, 2529s total
+g21 T3               eps=0.1233 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.129
+   [g22] suites installed in 10s
+   [g22] eval sample installed, 2639s total
+g22 T3               eps=0.1232 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.134
+   [g23] suites installed in 10s
+   [g23] eval sample installed, 2749s total
+g23 T3               eps=0.1250 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.138
+   [g24] suites installed in 9s
+   [g24] eval sample installed, 2853s total
+g24 T2               eps=0.0422 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:accept  random miss n=56/200/1200: 0.098/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.140
+   [g25] suites installed in 9s
+   [g25] eval sample installed, 2955s total
+g25 T1               eps=0.0678 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:detect  random miss n=56/200/1200: 0.037/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.276
+   [g26] suites installed in 9s
+   [g26] eval sample installed, 3057s total
+g26 T1               eps=0.0862 nearest=DO            S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.007/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.274
+   [g27] suites installed in 10s
+   [g27] eval sample installed, 3167s total
+g27 T3               eps=0.1247 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.000/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.140
+   [g28] suites installed in 10s
+   [g28] eval sample installed, 3277s total
+g28 T3               eps=0.1233 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.129
+   [g29] suites installed in 10s
+   [g29] eval sample installed, 3388s total
+g29 T3               eps=0.1233 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.001/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.129
+   [g30] suites installed in 9s
+   [g30] eval sample installed, 3492s total
+g30 T2               eps=0.0406 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:detect  random miss n=56/200/1200: 0.105/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.134
+   [g31] suites installed in 10s
+   [g31] eval sample installed, 3602s total
+g31 T2               eps=0.0817 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.010/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.129
+   [g32] suites installed in 10s
+   [g32] eval sample installed, 3712s total
+g32 T2               eps=0.0833 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:accept  random miss n=56/200/1200: 0.008/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.138
+   [g33] suites installed in 9s
+   [g33] eval sample installed, 3816s total
+g33 T2               eps=0.0426 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:accept  random miss n=56/200/1200: 0.088/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.138
+   [g34] suites installed in 10s
+   [g34] eval sample installed, 3926s total
+g34 T2               eps=0.0833 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:accept  random miss n=56/200/1200: 0.008/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.138
+   [g35] suites installed in 10s
+   [g35] eval sample installed, 4035s total
+g35 T2               eps=0.0833 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:accept  random miss n=56/200/1200: 0.008/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.138
+   [g36] suites installed in 9s
+   [g36] eval sample installed, 4137s total
+g36 T1               eps=0.0678 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:detect  random miss n=56/200/1200: 0.037/0.000/0.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.276
+   [g37] suites installed in 10s
+   [g37] eval sample installed, 4245s total
+g37 T2               eps=0.0833 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:accept  random miss n=56/200/1200: 0.008/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.138
+   [g38] suites installed in 10s
+   [g38] eval sample installed, 4356s total
+g38 T3               eps=0.1247 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.000/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.140
+   [g39] suites installed in 10s
+   [g39] eval sample installed, 4467s total
+g39 T3               eps=0.1247 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:detect  S_3:detect  random miss n=56/200/1200: 0.000/0.000/0.000  | 1-2 rule sample deviates from nearest: True | 4-rule FM-disagreement: 0.140
+   [x4] suites installed in 9s
+   [x4] eval sample installed, 4566s total
+x4  T2               eps=0.0000 nearest=FM,PRhi,PRlo  S_id:accept  S_cc:accept  S_3:accept  random miss n=56/200/1200: 1.000/1.000/1.000  | 1-2 rule sample deviates from nearest: False | 4-rule FM-disagreement: 0.134
+
+SUMMARY
+S_id (3 probes)  detects 0 of 41 deviating engines; alarms on 0 of 2 in-class decoys
+S_cc             detects 27 of 41 deviating engines; alarms on 0 of 2 in-class decoys
+S_3              detects 28 of 41 deviating engines; alarms on 0 of 2 in-class decoys
+total oracle installs 75809, wall time 4595s
